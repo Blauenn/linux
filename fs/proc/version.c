@@ -16,12 +16,25 @@ static int version_proc_show(struct seq_file *m, void *v)
 	return 0;
 }
 
+static int blauen_proc_show(struct seq_file *m, void *v)
+{
+	seq_puts(m, "CS422 - Kernel Compilation\n");
+	seq_puts(m, "Nawee Moongmart\n");
+	seq_puts(m, "Pakjira Thongchuea\n");
+	seq_puts(m, "Wuttipat Hunaed\n");
+	return 0;
+}
+
 static int __init proc_version_init(void)
 {
 	struct proc_dir_entry *pde;
 
 	pde = proc_create_single("version", 0, NULL, version_proc_show);
 	pde_make_permanent(pde);
+
+	pde = proc_create_single("blauen", 0, NULL, blauen_proc_show);
+	pde_make_permanent(pde);
+
 	return 0;
 }
 fs_initcall(proc_version_init);
